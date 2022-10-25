@@ -7,6 +7,7 @@ import {
   Text,
   Rectangle,
 } from "pixi.js"
+import { initEnemy } from "./src/enemy"
 import { initKeyboardEvent } from "./src/keyboard"
 
 const app = new Application({ width: 792, height: 670 })
@@ -33,7 +34,8 @@ function setup() {
   app.stage.addChild(treasure)
 
   initKeyboardEvent(treasure)
- 
+  initEnemy(id, gameScene, app.stage.height)
+
   const gameOverText = new Text('You win')
   const gameOverScene = new Container()
   gameOverScene.addChild(gameOverText)
@@ -50,8 +52,8 @@ function gameLoop(delta) {
 }
 
 function play(delta) {
-  treasure.x += treasure.vx 
-  treasure.y += treasure.vy 
+  treasure.x += treasure.vx
+  treasure.y += treasure.vy
   //All the game logic goes here
 }
 

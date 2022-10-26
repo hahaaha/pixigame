@@ -8,7 +8,7 @@ let blobs = []
 
 export const initEnemy = (id, gameScene, stageHeight) => {
   for (let i = 0; i < numberOfBlobs; i++) {
-    let blob = new Sprite(id["characters-3.png"])
+    let blob = new Sprite(id["characters-48.png"])
 
     let x = spacing * i + xOffset
 

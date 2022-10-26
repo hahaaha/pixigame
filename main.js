@@ -8,6 +8,7 @@ import {
   Rectangle,
 } from "pixi.js"
 import { initEnemy } from "./src/enemy"
+import { initHeathBar } from "./src/heathBar"
 import { initKeyboardEvent } from "./src/keyboard"
 
 const app = new Application({ width: 792, height: 670 })
@@ -15,6 +16,7 @@ const loader = new Loader()
 const { TextureCache } = utils
 let dungeon, explorer, treasure, id
 let state
+let blobs
 
 document.body.appendChild(app.view)
 loader.add("assets/sp.json").load(setup)
@@ -34,7 +36,8 @@ function setup() {
   app.stage.addChild(treasure)
 
   initKeyboardEvent(treasure)
-  initEnemy(id, gameScene, app.stage.height)
+  blobs = initEnemy(id, gameScene, app.stage.height)
+  initHeathBar(app.stage.width, gameScene)
 
   const gameOverText = new Text('You win')
   const gameOverScene = new Container()
@@ -54,6 +57,11 @@ function gameLoop(delta) {
 function play(delta) {
   treasure.x += treasure.vx
   treasure.y += treasure.vy
+  
+  blobs.forEach((blob) => {
+    blob.vy = blob.vy * -1 
+    blob.y += blob.vy
+  })
   //All the game logic goes here
 }
 

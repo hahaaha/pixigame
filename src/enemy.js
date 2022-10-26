@@ -34,4 +34,5 @@ export const initEnemy = (id, gameScene, stageHeight) => {
     //Add the blob to the `gameScene`
     gameScene.addChild(blob)
   }
+  return blobs
 }
